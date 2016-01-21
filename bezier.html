@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bezier</title>    
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <canvas width="800" height="700" id="cnv"></div>
+    <script>
+/*
+
+    var coord = function (x,y) {
+       if(!x) var x=0;
+       if(!y) var y=0;
+       return {x: x, y: y};
+    }
+
+    function B1(t) { return t*t*t }
+    function B2(t) { return 3*t*t*(1-t) }
+    function B3(t) { return 3*t*(1-t)*(1-t) }
+    function B4(t) { return (1-t)*(1-t)*(1-t) }
+
+   
+
+  P1 = coord(50,50);
+  C2 = coord(200,70);
+  C3 = coord(150,270);
+  P4 = coord(300,300);
+
+    
+  var cubic = function(k){
+    var x = P1.x * B1(k) + C2.x * B2(k) + C3.x * B3(k) + P4.x * B4(k);
+    var y = P1.y * B1(k) + C2.y * B2(k) + C3.y * B3(k) + P4.y * B4(k);
+    return coord(x,y);
+  }*/
+
+  var canv = document.getElementById('cnv');
+  var c= canv.getContext('2d');
+
+  var a = 0,b = 0,j = 0,fir = true;
+
+  c.beginPath();
+  while(j<=1){
+    var pos = bezier(j);
+    if(fir){
+      c.moveTo(pos.x,pos.y);
+      fir = false;
+    }else{      
+      c.lineTo(pos.x,pos.y);
+    }
+    j += 0.01;
+  }
+  c.stroke();
+  c.closePath();
+  c.strokeStyle = '#F00';
+
+  c.beginPath();
+  c.moveTo(P1.x,P1.y);
+  c.lineTo(C2.x,C2.y);
+  c.closePath();
+  c.stroke();
+
+  c.strokeStyle = '#090';
+
+  c.beginPath();
+  c.moveTo(P4.x,P4.y);
+  c.lineTo(C3.x,C3.y);
+  c.closePath();
+  c.stroke();
+
+
+
+
+
+    </script>
+  </body>
+</html>
